@@ -11,6 +11,8 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+    networks:
+      - appnetwork
 
   web:
     build: .
@@ -21,6 +23,11 @@ services:
       - "8000:8000"
     depends_on:
       - db
+    networks:
+      - appnetwork
 
 volumes:
   pgdata:
+
+networks:
+  appnetwork:
